@@ -1,0 +1,29 @@
+# Environment
+.env
+*.session
+*.session-journal
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Output
+reports/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.history/
+
+# OS
+.DS_Store
+Thumbs.db
