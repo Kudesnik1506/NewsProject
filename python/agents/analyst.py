@@ -19,8 +19,15 @@ def run(articles: list[dict]) -> list[dict]:
     Возвращает список словарей AnalyzedStory с геостратегическим
     и геопсихологическим разбором каждой истории.
     """
-    eligible = [a for a in articles if a.get("relevance_score", 0) >= 6]
+    eligible = [
+        a for a in articles
+        if a.get("relevance_score", 0) >= 6
+        and a.get("verification_status") != "DISPUTED"
+    ]
     eligible = sorted(eligible, key=lambda a: a.get("relevance_score", 0), reverse=True)[:10]
+    disputed_count = sum(1 for a in articles if a.get("verification_status") == "DISPUTED")
+    if disputed_count:
+        print(f"[Analyst] Skipped {disputed_count} DISPUTED articles (excluded from digest)")
     print(f"[Analyst] Analyzing {len(eligible)} articles (of {len(articles)} total, top-10)...")
 
     if not eligible:

@@ -47,8 +47,9 @@ def run(
 
     markdown = extract_text(response.content[0].text)
 
-    os.makedirs("reports", exist_ok=True)
-    file_path = f"reports/{target_date.isoformat()}_{country}.md"
+    reports_dir = os.path.join(os.path.dirname(__file__), "..", "reports")
+    os.makedirs(reports_dir, exist_ok=True)
+    file_path = os.path.join(reports_dir, f"{target_date.isoformat()}_{country}.md")
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(markdown)
 

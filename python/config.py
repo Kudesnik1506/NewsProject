@@ -23,16 +23,17 @@ COUNTRIES: dict[str, dict] = {
             "http://rss.cnn.com/rss/cnn_topstories.rss",
         ],
         "newsapi_query": (
-            "US foreign policy OR sanctions OR trade war OR geopolitics "
-            "OR information operations OR propaganda OR NATO OR Ukraine"
+            "White House OR State Department OR Pentagon OR NATO "
+            "OR US sanctions OR US foreign policy OR US military "
+            "OR geopolitics OR trade war OR information war"
         ),
         "newsapi_country": "us",
         "search_queries": [
-            "US foreign policy today",
-            "USA geopolitics latest news",
-            "American sanctions trade war",
-            "US information operations narratives propaganda",
-            "White House State Department Pentagon announcement",
+            "White House official statement today",
+            "State Department Pentagon announcement geopolitics",
+            "US government narrative information operations",
+            "American foreign policy position official",
+            "USA propaganda narrative allies adversaries",
         ],
         "telegram_channels": [],
     },

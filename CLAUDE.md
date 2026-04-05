@@ -15,7 +15,7 @@ User → Orchestrator
          ↓
       Collector → Filter → Verifier → Analyst → Reporter
                                                     ↓
-                                            reports/{date}_{country}.md
+                                            python/reports/{date}_{country}.md
 ```
 
 Каждый агент — отдельный вызов Claude API. Данные между агентами передаются как JSON. Оркестратор координирует через `tool_use`.
@@ -63,9 +63,9 @@ Report           # date + country + stories + total_sources + verified_count + f
 ### Статусы верификации
 | Статус | Условие |
 |--------|---------|
-| `VERIFIED` | 3+ независимых источника, нет противоречий |
-| `UNVERIFIED` | 1–2 источника |
-| `DISPUTED` | Источники противоречат друг другу в фактах |
+| `VERIFIED` | 3+ независимых источника, нет противоречий → полный анализ в Части 1 |
+| `UNVERIFIED` | 1–2 источника → краткий список "На радаре" в Части 2 |
+| `DISPUTED` | Источники противоречат друг другу в фактах → исключается из дайджеста |
 
 ### Шкала relevance_score (0–10)
 | Оценка | Значение |

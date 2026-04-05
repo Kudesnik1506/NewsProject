@@ -215,8 +215,8 @@ NewsProject/
 |-------|---------|
 | Filter | Порог по умолчанию: `relevance_score ≥ 5`. Строгий: `≥ 7`. Широкий (дефицит новостей): `≥ 4` |
 | Verifier | `VERIFIED` только при 3+ независимых источниках |
-| Analyst | Анализировать только статьи с `relevance_score ≥ 6` |
-| Reporter | Дайджест в 2 части: VERIFIED/DISPUTED — полный анализ по кластерам; UNVERIFIED — краткий список "На радаре". Максимум 10 историй, топ по `relevance_score` |
+| Analyst | Анализировать только статьи с `relevance_score ≥ 6` и `verification_status != DISPUTED`. DISPUTED — исключить. |
+| Reporter | Дайджест в 2 части: VERIFIED — полный анализ по кластерам; UNVERIFIED — краткий список "На радаре". DISPUTED не включается. Максимум 10 историй, топ по `relevance_score` |
 
 ---
 
