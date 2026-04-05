@@ -14,6 +14,11 @@ USER_PROMPT = load_user_prompt("filter_agent")
 
 
 def run(articles: list[dict]) -> list[dict]:
+    """Фильтрует и оценивает статьи через Claude.
+
+    Возвращает только статьи с relevance_score >= 5, дедуплицированные
+    и отсортированные по убыванию оценки.
+    """
     print(f"[Filter] Processing {len(articles)} articles...")
 
     response = client.messages.create(

@@ -14,6 +14,11 @@ from models import Article
 
 
 def fetch_telegram(channels: list[str], country: str, limit: int = 10) -> list[Article]:
+    """Получает последние сообщения из Telegram-каналов через Telethon.
+
+    Возвращает [] если TELEGRAM_API_ID / TELEGRAM_API_HASH не заданы
+    или telethon не установлен. Требует предварительного вызова auth().
+    """
     if not channels:
         return []
 

@@ -1,8 +1,10 @@
+"""Источник данных веб-поиска через Tavily. Требует переменную окружения TAVILY_API_KEY."""
 import os
 from models import Article
 
 
 def fetch_web_search(queries: list[str], country: str) -> list[Article]:
+    """Выполняет поиск в вебе через Tavily по каждому запросу. Возвращает [] если ключ не задан."""
     api_key = os.getenv("TAVILY_API_KEY")
     if not api_key:
         print("[WebSearch] TAVILY_API_KEY not set, skipping.")
@@ -35,6 +37,7 @@ def fetch_web_search(queries: list[str], country: str) -> list[Article]:
 
 
 def _domain(url: str) -> str:
+    """Извлекает доменное имя из URL."""
     try:
         return url.split("/")[2]
     except IndexError:

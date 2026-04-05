@@ -22,6 +22,11 @@ def run(
     total_sources: int,
     verified_count: int,
 ) -> str:
+    """Генерирует Markdown-дайджест из проанализированных историй и сохраняет в reports/.
+
+    Дайджест разделён на две части: верифицированные события (полный анализ по кластерам)
+    и непроверенные сигналы (краткий список). Возвращает путь к сохранённому файлу.
+    """
     print(f"[Reporter] Generating digest for {country} on {target_date}...")
 
     response = client.messages.create(

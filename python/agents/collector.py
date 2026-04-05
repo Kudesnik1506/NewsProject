@@ -13,6 +13,11 @@ from sources.telegram_source import fetch_telegram
 
 
 def run(country: str, target_date: date) -> list[dict]:
+    """Собирает сырые статьи из всех настроенных источников для указанной страны и даты.
+
+    Вызовы Claude не выполняются — только сбор и нормализация данных.
+    Возвращает список словарей Article.
+    """
     cfg = COUNTRIES.get(country)
     if not cfg:
         raise ValueError(f"Country '{country}' not found in config.py")

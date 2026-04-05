@@ -15,6 +15,7 @@ from agents import collector, filter_agent, verifier, analyst, reporter
 
 
 def parse_args():
+    """Разбирает аргументы командной строки: страна, дата, быстрый режим, тематический фокус."""
     parser = argparse.ArgumentParser(description="NewsProject daily digest pipeline")
     parser.add_argument("--country", default="USA", help="Country code (default: USA)")
     parser.add_argument("--date", default=None, help="Date YYYY-MM-DD (default: today)")
@@ -24,6 +25,11 @@ def parse_args():
 
 
 def run_pipeline(country: str, target_date: date, fast: bool = False, topic: str | None = None) -> str:
+    """Запускает полный пайплайн из 5 шагов и возвращает путь к готовому дайджесту.
+
+    Шаги: Сбор → Фильтрация → Верификация (пропускается в fast-режиме) → Анализ → Отчёт.
+    Возвращает пустую строку, если на любом шаге не осталось материалов.
+    """
     print(f"\n{'='*60}")
     print(f"NewsProject Pipeline — {country} — {target_date}")
     if topic:

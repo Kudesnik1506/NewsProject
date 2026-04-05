@@ -14,6 +14,11 @@ USER_PROMPT = load_user_prompt("verifier")
 
 
 def run(articles: list[dict]) -> list[dict]:
+    """Кросс-верифицирует статьи через Claude.
+
+    Добавляет к каждой статье поля verification_status, source_count
+    и verification_note. Статьи не удаляются и не изменяются по содержанию.
+    """
     print(f"[Verifier] Verifying {len(articles)} articles...")
 
     response = client.messages.create(

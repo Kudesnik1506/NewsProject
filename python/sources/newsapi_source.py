@@ -1,3 +1,4 @@
+"""Источник данных NewsAPI. Требует переменную окружения NEWSAPI_KEY."""
 import os
 from datetime import date, datetime
 from newsapi import NewsApiClient
@@ -5,6 +6,7 @@ from models import Article
 
 
 def fetch_newsapi(query: str, target_date: date, country: str) -> list[Article]:
+    """Получает статьи из NewsAPI по запросу и дате. Возвращает [] если ключ не задан."""
     api_key = os.getenv("NEWSAPI_KEY")
     if not api_key:
         print("[NewsAPI] NEWSAPI_KEY not set, skipping.")
@@ -37,6 +39,7 @@ def fetch_newsapi(query: str, target_date: date, country: str) -> list[Article]:
 
 
 def _parse_date(date_str: str | None) -> datetime | None:
+    """Разбирает строку даты ISO 8601 в объект datetime."""
     if not date_str:
         return None
     try:

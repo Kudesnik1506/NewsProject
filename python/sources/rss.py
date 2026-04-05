@@ -1,9 +1,11 @@
+"""Источник данных RSS — сбор статей через feedparser."""
 import feedparser
 from datetime import datetime
 from models import Article
 
 
 def fetch_rss(feeds: list[str], country: str) -> list[Article]:
+    """Получает до 10 записей из каждой RSS-ленты. Возвращает список Article."""
     articles = []
     for feed_url in feeds:
         try:
@@ -25,6 +27,7 @@ def fetch_rss(feeds: list[str], country: str) -> list[Article]:
 
 
 def _parse_date(entry) -> datetime | None:
+    """Извлекает дату публикации из записи feedparser."""
     if hasattr(entry, "published_parsed") and entry.published_parsed:
         try:
             return datetime(*entry.published_parsed[:6])
@@ -34,6 +37,7 @@ def _parse_date(entry) -> datetime | None:
 
 
 def _domain(url: str) -> str:
+    """Извлекает доменное имя из URL."""
     try:
         return url.split("/")[2]
     except IndexError:
