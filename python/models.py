@@ -43,7 +43,7 @@ class AnalyzedStory(BaseModel):
     power_shift: str             # конкретные сдвиги в балансе сил
     psychological_dimension: str # механизм воздействия, целевая аудитория, нарративы
     scenarios: list[Scenario]
-    cluster: str  # геополитика / торговля / военное / дипломатия / экономика / геопсихология
+    cluster: str  # P1/P2/A1/A2/E1/E2/I1/I2 — см. agents/paei_model.md
 
 
 class Report(BaseModel):

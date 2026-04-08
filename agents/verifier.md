@@ -67,7 +67,7 @@ JSON-массив статей от Filter Agent с полями: title, url, so
 - Не делать собственных выводов о достоверности событий
 
 ### Формат
-Тот же JSON-массив, плюс три новых поля на каждую статью: `verification_status`, `source_count`, `verification_note`.
+JSON-массив с тремя полями на каждую статью: `url`, `verification_status`, `source_count`, `verification_note`. Полные данные статей не возвращать.
 
 ### Выходные данные (результат)
 
@@ -80,18 +80,8 @@ JSON-массив статей от Filter Agent с полями: title, url, so
 
 ```json
 [
-  {
-    "title": "...",
-    "url": "...",
-    "source": "Reuters",
-    "content": "...",
-    "published_at": "...",
-    "country": "USA",
-    "relevance_score": 8.5,
-    "verification_status": "VERIFIED",
-    "source_count": 4,
-    "verification_note": "Событие подтверждают Reuters, AP, NYT и Bloomberg."
-  }
+  {"url": "https://...", "verification_status": "VERIFIED", "source_count": 4, "verification_note": "Событие подтверждают Reuters, AP, NYT и Bloomberg."},
+  {"url": "https://...", "verification_status": "UNVERIFIED", "source_count": 1, "verification_note": "Только один источник."}
 ]
 ```
 
@@ -108,5 +98,5 @@ JSON-массив статей от Filter Agent с полями: title, url, so
 {articles_json}
 
 Учитывай источники внутри списка как перекрёстные подтверждения.
-Верни JSON-массив с полями verification_status, source_count, verification_note. Только JSON, без пояснений.
+Верни JSON-массив с полями url, verification_status, source_count, verification_note для каждой статьи. Только эти поля, без остальных данных статьи. Только JSON, без пояснений.
 ```

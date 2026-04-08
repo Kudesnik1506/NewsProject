@@ -5,19 +5,20 @@ from newsapi import NewsApiClient
 from models import Article
 
 
-def fetch_newsapi(query: str, target_date: date, country: str) -> list[Article]:
-    """Получает статьи из NewsAPI по запросу и дате. Возвращает [] если ключ не задан."""
+def fetch_newsapi(query: str, target_date: date, country: str, date_from: date | None = None) -> list[Article]:
+    """Получает статьи из NewsAPI по запросу и дате (или диапазону дат). Возвращает [] если ключ не задан."""
     api_key = os.getenv("NEWSAPI_KEY")
     if not api_key:
         print("[NewsAPI] NEWSAPI_KEY not set, skipping.")
         return []
 
+    from_date = (date_from or target_date).isoformat()
     client = NewsApiClient(api_key=api_key)
     try:
         response = client.get_everything(
             q=query,
             language="en",
-            from_param=target_date.isoformat(),
+            from_param=from_date,
             to=target_date.isoformat(),
             sort_by="relevancy",
             page_size=30,

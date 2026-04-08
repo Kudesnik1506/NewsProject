@@ -54,7 +54,7 @@ class AnalyzedStory(BaseModel):
     power_shift: str
     psychological_dimension: str          # механизм воздействия, нарративы, целевая аудитория
     scenarios: list[Scenario]
-    cluster: str  # геополитика / торговля / военное / дипломатия / экономика / геопсихология
+    cluster: str  # P1/P2/A1/A2/E1/E2/I1/I2 — см. agents/paei_model.md
 
 
 class Report(BaseModel):
@@ -215,8 +215,8 @@ NewsProject/
 |-------|---------|
 | Filter | Порог по умолчанию: `relevance_score ≥ 5`. Строгий: `≥ 7`. Широкий (дефицит новостей): `≥ 4` |
 | Verifier | `VERIFIED` только при 3+ независимых источниках |
-| Analyst | Анализировать только статьи с `relevance_score ≥ 6` и `verification_status != DISPUTED`. DISPUTED — исключить. |
-| Reporter | Дайджест в 2 части: VERIFIED — полный анализ по кластерам; UNVERIFIED — краткий список "На радаре". DISPUTED не включается. Максимум 10 историй, топ по `relevance_score` |
+| Analyst | Анализировать только статьи с `relevance_score ≥ 6` и `verification_status != DISPUTED`. DISPUTED — исключить. Возвращает JSON с полями `stories` и `state_diagnosis` (диагноз по 8 измерениям PAEI×Jung). |
+| Reporter | Дайджест в 3 части: VERIFIED — полный анализ по 8 кластерам; UNVERIFIED — краткий список "На радаре"; Диагноз состояния государства — таблица 8 измерений + дисбалансы + вывод. DISPUTED не включается. Максимум 10 историй, топ по `relevance_score` |
 
 ---
 

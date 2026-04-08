@@ -1,1 +1,1 @@
-"""Агенты пайплайна: collector, filter_agent, verifier, analyst, reporter."""
+"""Агенты пайплайна: collector, triage_agent, analyst, paei_classifier, reporter."""
